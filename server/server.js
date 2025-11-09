@@ -1,32 +1,26 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import fs from "fs";
-import { parse as dotenvParse } from "dotenv";
-import { connectDB } from "./config/db.js"; // ✅ named import
+import dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import storyRoutes from "./routes/storyRoutes.js";
 
-// Silent .env loading to avoid library console messages
-try {
-  if (fs.existsSync('.env')) {
-    const parsed = dotenvParse(fs.readFileSync('.env'));
-    for (const [key, value] of Object.entries(parsed)) {
-      if (process.env[key] === undefined) process.env[key] = value;
-    }
-  }
-} catch {
-  // ignore
-}
+dotenv.config();
 
 const app = express();
 
 // ✅ connect to MongoDB
 await connectDB();
 
+const allowedOrigins = [
+  process.env.FRONTEND_ORIGIN,
+  "http://localhost:5173",
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
@@ -37,6 +31,9 @@ app.use(cookieParser());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/stories", storyRoutes);
+
+// Health route
+app.get("/", (req, res) => res.send("✅ Backend running"));
 
 // test route
 app.get("/api/test", (req, res) => {
