@@ -1,0 +1,63 @@
+:root {
+  --orange: #ff6b5f;
+  --black: #111827;
+  --white: #ffffff;
+}
+
+/* ===== Global ===== */
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== Navbar ===== */
+.navbar-brand span {
+  color: var(--orange);
+}
+
+/* ===== Buttons ===== */
+.btn-orange {
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: #ff4b3f;
+}
+
+.btn-outline-orange {
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-orange:hover {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  background-color: var(--white);
+  color: var(--black);
+  padding: 6rem 1rem;
+}
+
+.hero h1 {
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.hero .highlight {
+  color: var(--orange);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
