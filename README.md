@@ -13,6 +13,7 @@
 - **Routing**: [React Router](https://reactrouter.com/)
 - **Backend Framework**: [Node.js](https://nodejs.org/) + [Express.js](https://expressjs.com/)
 - **Database**: [MongoDB](https://www.mongodb.com/)
+- **External APIs**: [Nodemailer (Gmail SMTP)](https://nodemailer.com/about/)
 
 ---
 
